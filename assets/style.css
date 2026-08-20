@@ -1,0 +1,219 @@
+/* Shared stylesheet for SWE Interview Prep lessons. Tufte-inspired: serif
+   reading type, generous margins, restrained color, content-first. */
+
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --paper: #fdfcf9;
+  --paper-raised: #f5f2ea;
+  --rule: #d8d2c2;
+  --accent: #8a3324;      /* brick — sparing use: links, emphasis */
+  --accent-soft: #c8846f;
+  --code-bg: #f0eee6;
+  --good: #2f6f4f;
+  --bad: #a83232;
+  --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 1.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.lesson-kicker {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin-top: 1.75rem;
+}
+
+p, li { color: var(--ink); }
+
+a { color: var(--accent); text-decoration-thickness: 1px; }
+a:hover { color: var(--accent-soft); }
+
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+pre code { background: none; padding: 0; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent-soft);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* --- Nav / breadcrumb --- */
+.lesson-nav {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 2rem;
+}
+.lesson-nav a { margin-right: 0.75rem; }
+
+/* --- Callout boxes --- */
+.box {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.box-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.box.source { border-left: 4px solid var(--accent); }
+.box.ask     { border-left: 4px solid var(--good); }
+.box.warn    { border-left: 4px solid var(--bad); }
+
+/* --- Recall / retrieval-practice card --- */
+details.recall {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.25rem 0;
+  background: var(--paper-raised);
+}
+details.recall summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+details.recall .answer {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--rule);
+  color: var(--ink-soft);
+}
+
+/* --- Multiple-choice quiz widget (see quiz.js) --- */
+.quiz {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--paper-raised);
+}
+.quiz .quiz-q { font-weight: 600; margin-bottom: 0.75rem; }
+.quiz .quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.quiz .quiz-opt:hover { border-color: var(--accent-soft); }
+.quiz .quiz-opt.correct { background: #e4f2e9; border-color: var(--good); }
+.quiz .quiz-opt.incorrect { background: #f6e3e1; border-color: var(--bad); }
+.quiz .quiz-opt[disabled] { cursor: default; }
+.quiz .quiz-feedback { margin-top: 0.5rem; font-size: 0.88rem; color: var(--ink-soft); }
+
+/* --- Practice / timed exercise --- */
+.practice {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  background: #fff;
+}
+.practice .box-title { font-family: var(--sans); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 1.25rem 0;
+}
+th, td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+th { font-family: var(--sans); font-size: 0.78rem; text-transform: uppercase; color: var(--ink-soft); }
+
+footer.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+@media print {
+  body { max-width: 100%; }
+  .box, details.recall, .quiz, .practice { break-inside: avoid; }
+}
