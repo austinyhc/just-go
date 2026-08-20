@@ -1,0 +1,137 @@
+<title>What Changed: Interviewing in the LLM Era</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+
+<div class="lesson-nav">
+  <a href="../MISSION.md">Mission</a>
+  <a href="../RESOURCES.md">Resources</a>
+  <a href="../reference/company-interview-landscape.html">Reference: Company Landscape</a>
+</div>
+
+<div class="lesson-kicker">Lesson 1 · Orientation</div>
+<h1>What Changed: Interviewing in the LLM Era</h1>
+<p style="font-family: var(--sans); color: var(--ink-soft);">
+  Before drilling any algorithm, calibrate the target. You're rusty on interview mechanics, not on
+  engineering — the biggest risk right now isn't "forgot how a hash map works," it's preparing for
+  an interview format that no longer exists. This lesson fixes that.
+</p>
+
+<h2>Why this comes first</h2>
+<p>
+  Your <a href="../MISSION.md">mission</a> explicitly calls out understanding the post-LLM interview
+  landscape as its own thread — not a footnote. That's the right instinct: if you spend eight weeks
+  grinding under 2019 assumptions and the actual room has changed, you'll waste prep time and get
+  caught off guard on interview day. So: knowledge first, then drills.
+</p>
+
+<h2>The headline split</h2>
+<p>
+  As of 2026, Google and Amazon have landed in different places on AI-assistant use during interviews.
+  Google is piloting a Gemini-assisted "code comprehension" round for some junior/mid roles — not yet
+  universal, and not the default. Amazon's stance is stricter: AI use detected during an interview has
+  been reported as grounds for disqualification.
+</p>
+<p>
+  Two independent trackers looking across the industry broadly agree: roughly <strong>64% of companies
+  still ban AI-assistant use</strong> in interviews outright.
+  <sup><a href="https://tryassistly.com/blog/companies-that-allow-or-ban-ai-in-interviews-2026">[1]</a></sup>
+  The safe default, walking into any of these three companies, is to assume unaided unless a recruiter
+  tells you otherwise in writing.
+</p>
+
+<details class="recall">
+  <summary>Recall — no peeking</summary>
+  <div class="answer">
+    Without scrolling up: which of the three target companies is reported to disqualify candidates
+    for AI use, and which is piloting an AI-assisted round? Say it out loud before continuing.
+  </div>
+</details>
+
+<h2>The numbers behind "it's changed"</h2>
+<p>
+  The largest dataset found on this (19,368 interviews analyzed) shows just how mainstream AI use in
+  interviews has become — and how interviewers are actually responding to it:
+</p>
+<ul>
+  <li><strong>38.5%</strong> of interviews were flagged for suspected AI use.</li>
+  <li><strong>48%</strong> of those flags were in technical (coding) rounds specifically.</li>
+  <li><strong>61%</strong> of flagged candidates still passed the interview.</li>
+</ul>
+<p>
+  <sup><a href="https://fabrichq.ai/blogs/state-of-cheating-in-interviews-in-2026-tools-trends-and-prevention">[2]</a></sup>
+  That last number is the one worth sitting with.
+</p>
+
+<div class="quiz" data-answer="1">
+  <div class="quiz-q">
+    What's the most defensible read of "61% of flagged candidates still passed"?
+  </div>
+  <button class="quiz-opt">Interviewers rarely check for AI use in interviews</button>
+  <button class="quiz-opt">Being flagged alone does not decide the outcome</button>
+  <button class="quiz-opt">Most flags turn out to be false alarms</button>
+  <button class="quiz-opt">Passing candidates are simply never flagged at all</button>
+  <div class="quiz-feedback"></div>
+</div>
+
+<h2>What's actually being tested now</h2>
+<p>
+  Regardless of a company's written policy, practitioners converged on the same observation: interviewers
+  have adapted by pushing harder on <strong>live, unaided explanation</strong> — walk through your
+  approach, defend your trade-offs, debug on the spot, answer "why not X instead" without a pause.
+  <sup><a href="https://vinitshahdeo.substack.com/p/ai-assisted-coding-interviews-what-it-means-to-be-an-engineer">[3]</a></sup>
+  This is the actual skill under evaluation now — solving the problem was always necessary, but it is
+  no longer sufficient by itself.
+</p>
+<div class="box warn">
+  <div class="box-title">Practical implication</div>
+  When we get to coding drills, we won't just practice reaching a working solution. We'll practice
+  narrating it out loud, under time pressure, as if someone is watching — because that's the actual
+  bar now, independent of any single company's AI policy.
+</div>
+
+<h2>Take-homes are shrinking</h2>
+<p>
+  Take-home assignments have become one of the easiest formats to complete with AI assistance
+  undetected, and companies have responded by de-emphasizing them or pairing them with a mandatory
+  live follow-up where you explain and modify your own submission on the spot. If a take-home shows
+  up in your loop, expect that follow-up — prepare for it as part of the take-home, not as a surprise.
+</p>
+
+<h2>Company snapshot</h2>
+<p>
+  Full detail, sourced separately per company, lives in the reference doc — this is deliberately kept
+  as a fast lookup, not a re-read of this lesson:
+</p>
+<div class="box source">
+  <div class="box-title">Reference</div>
+  <a href="../reference/company-interview-landscape.html">Company Interview Landscape</a> —
+  process shape, AI stance, and primary source per company, one screen, printable.
+</div>
+
+<h2>What this means for your prep plan</h2>
+<ul>
+  <li>Assume no AI assistance in any live round, at any of the three companies, unless a recruiter says otherwise in writing.</li>
+  <li>Practice explaining and defending solutions out loud — this becomes a standing element of every future coding lesson in this workspace, not a one-off drill.</li>
+  <li>Don't skip pattern fluency because "AI can generate the code" — the bar has moved to live comprehension, which requires you to actually know the pattern, not just recognize the output.</li>
+  <li>If a take-home appears in your loop, treat the live explanation follow-up as part of the assignment.</li>
+</ul>
+
+<div class="box ask">
+  <div class="box-title">Ask your teacher</div>
+  Anything here unclear, or want to push back on a claim? Ask directly — I'm your teacher for this
+  workspace, and citations above are there so you can go verify anything that matters before you rely
+  on it in an actual interview.
+</div>
+
+<h2>Next</h2>
+<p>
+  Lesson 2 starts the DSA rebuild in Go — likely the two-pointers / sliding-window pattern family,
+  since it's the highest-yield starting point for someone whose pattern recognition is rusty rather
+  than absent. That lesson will introduce the <code>reference/go-patterns.html</code> cheat sheet,
+  which will grow as we go.
+</p>
+
+<footer class="lesson-footer">
+  Lesson 1 of the <a href="../MISSION.md">Big Tech SWE Interview Prep</a> workspace ·
+  Sources: <a href="../RESOURCES.md">RESOURCES.md</a>
+</footer>
