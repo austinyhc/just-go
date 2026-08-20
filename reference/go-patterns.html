@@ -1,0 +1,60 @@
+<title>Go DSA Pattern Cheat Sheet</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+<div class="lesson-nav">
+  <a href="../MISSION.md">Mission</a>
+  <a href="../lessons/0002-two-pointers.html">Lesson 2: Two Pointers</a>
+</div>
+
+<div class="lesson-kicker">Reference · Grows with every DSA lesson</div>
+<h1>Go DSA Pattern Cheat Sheet</h1>
+<p style="font-family: var(--sans); color: var(--ink-soft);">
+  One entry per pattern: how to recognize it, the Go template, complexity, and problems to drill.
+  Built for a five-second lookup before or during timed practice — not for reading start to finish.
+</p>
+
+<h2 id="two-pointers">Two Pointers</h2>
+
+<table>
+  <tr><th>Recognize when</th><td>Sorted array/string; searching for a pair/triplet meeting a target; palindrome check; merging two sorted sequences; want O(n) instead of an O(n²) nested-loop brute force.</td></tr>
+  <tr><th>Variants</th><td><strong>Opposite ends</strong> — pointers start at both ends, move inward. <strong>Same direction</strong> — a slow pointer and a fast pointer both move forward, fast doing the exploring.</td></tr>
+  <tr><th>Complexity</th><td>O(n) time, O(1) extra space — the whole point versus the O(n²) brute force.</td></tr>
+</table>
+
+<pre><code>// Opposite-ends template — e.g. Two Sum II (sorted input)
+func twoSum(nums []int, target int) []int {
+    lo, hi := 0, len(nums)-1
+    for lo &lt; hi {
+        sum := nums[lo] + nums[hi]
+        switch {
+        case sum == target:
+            return []int{lo, hi}
+        case sum &lt; target:
+            lo++
+        default:
+            hi--
+        }
+    }
+    return nil
+}
+</code></pre>
+
+<pre><code>// Same-direction template — e.g. remove duplicates in place
+func removeDuplicates(nums []int) int {
+    slow := 0
+    for fast := 1; fast &lt; len(nums); fast++ {
+        if nums[fast] != nums[slow] {
+            slow++
+            nums[slow] = nums[fast]
+        }
+    }
+    return slow + 1
+}
+</code></pre>
+
+<p><strong>Drill problems:</strong> Two Sum II, Valid Palindrome, Container With Most Water, 3Sum, Remove Duplicates from Sorted Array, Trapping Rain Water.</p>
+<p><strong>Primary source:</strong> <a href="https://leetcode.com/problem-list/mquvlgzg/">NeetCode — Two Pointers problem list</a>.</p>
+
+<footer class="lesson-footer">
+  Go DSA Pattern Cheat Sheet · Big Tech SWE Interview Prep workspace
+</footer>

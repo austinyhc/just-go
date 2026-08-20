@@ -1,0 +1,154 @@
+<title>Pattern 1: Two Pointers</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/quiz.js" defer></script>
+
+<div class="lesson-nav">
+  <a href="../MISSION.md">Mission</a>
+  <a href="../RESOURCES.md">Resources</a>
+  <a href="../lessons/0001-post-llm-interview-landscape.html">Lesson 1: Interview Landscape</a>
+  <a href="../reference/go-patterns.html">Reference: Go Pattern Cheat Sheet</a>
+</div>
+
+<div class="lesson-kicker">Lesson 2 · DSA Patterns</div>
+<h1>Pattern 1: Two Pointers</h1>
+<p style="font-family: var(--sans); color: var(--ink-soft);">
+  First pattern in the rebuild. You've almost certainly used this before without naming it — the goal
+  here isn't to learn it from scratch, it's to get fast at <em>recognizing</em> when it applies and
+  writing it clean under time pressure.
+</p>
+
+<h2>Why this one first</h2>
+<p>
+  Two pointers is the highest-yield starting pattern: it's simple enough to fully internalize in one
+  session, it directly sets up sliding window (lesson 3), and it shows up constantly in easy/medium
+  interview problems. If pattern recognition is what's rusty — not the underlying logic — this is
+  where that comes back fastest.
+</p>
+
+<h2>Recognize it</h2>
+<p>Reach for two pointers when you see:</p>
+<ul>
+  <li>A <strong>sorted</strong> array or string (or one you can sort without losing needed info).</li>
+  <li>You're looking for a <strong>pair or triplet</strong> that satisfies some condition against a target.</li>
+  <li>A <strong>palindrome</strong> or symmetry check.</li>
+  <li>You need to <strong>merge</strong> two sorted sequences, or process in place under a size constraint.</li>
+  <li>A brute-force nested loop gets you O(n²), and the data has enough structure (sorted, in-place) to do better.</li>
+</ul>
+
+<details class="recall">
+  <summary>Recall — no peeking</summary>
+  <div class="answer">
+    Without scrolling up: what's the time complexity two pointers gets you, versus the nested-loop
+    brute force it replaces? Say both numbers out loud.
+  </div>
+</details>
+
+<h2>The two variants</h2>
+<p>
+  <strong>Opposite ends, converging.</strong> One pointer starts at index 0, the other at
+  <code>len-1</code>. Each step, you use the relationship between the two values to decide which
+  pointer moves. Classic case: Two Sum on a sorted array.
+</p>
+<p>
+  <strong>Same direction, slow/fast.</strong> Both pointers start near the beginning and move forward.
+  The fast pointer explores; the slow pointer marks a boundary — "everything before me is already
+  correct." Classic case: removing duplicates from a sorted array in place.
+</p>
+
+<pre><code>// Opposite-ends — e.g. Two Sum II (input already sorted ascending)
+func twoSum(nums []int, target int) []int {
+    lo, hi := 0, len(nums)-1
+    for lo &lt; hi {
+        sum := nums[lo] + nums[hi]
+        switch {
+        case sum == target:
+            return []int{lo, hi}
+        case sum &lt; target:
+            lo++
+        default:
+            hi--
+        }
+    }
+    return nil
+}
+</code></pre>
+
+<div class="quiz" data-answer="2">
+  <div class="quiz-q">
+    In the opposite-ends template above, if <code>sum &lt; target</code>, why do we move
+    <code>lo</code> forward rather than <code>hi</code> backward?
+  </div>
+  <button class="quiz-opt">Moving lo is simply the conventional choice</button>
+  <button class="quiz-opt">Moving hi backward would skip valid pairs entirely</button>
+  <button class="quiz-opt">The array is sorted, so only increasing lo can raise the sum</button>
+  <button class="quiz-opt">Both pointers must always move together each step</button>
+  <div class="quiz-feedback"></div>
+</div>
+
+<pre><code>// Same-direction — e.g. remove duplicates from sorted array, in place
+func removeDuplicates(nums []int) int {
+    slow := 0
+    for fast := 1; fast &lt; len(nums); fast++ {
+        if nums[fast] != nums[slow] {
+            slow++
+            nums[slow] = nums[fast]
+        }
+    }
+    return slow + 1
+}
+</code></pre>
+
+<div class="quiz" data-answer="0">
+  <div class="quiz-q">
+    In the same-direction template, what does <code>slow</code> represent at any point mid-loop?
+  </div>
+  <button class="quiz-opt">The index of the last confirmed-unique element written</button>
+  <button class="quiz-opt">The index the function will return next iteration</button>
+  <button class="quiz-opt">A pointer that always trails fast by exactly one</button>
+  <button class="quiz-opt">The count of duplicates removed from the array</button>
+  <div class="quiz-feedback"></div>
+</div>
+
+<div class="box warn">
+  <div class="box-title">Interview-day reminder</div>
+  Per <a href="../lessons/0001-post-llm-interview-landscape.html">lesson 1</a>: solving it isn't the
+  bar anymore, narrating it is. Say the recognition signal out loud before you write a line — "this
+  is sorted and I need a pair, so opposite-ends two pointers" — then code it.
+</div>
+
+<div class="practice">
+  <div class="box-title">Practice — 15 minutes, out loud</div>
+  <p>Pick one, set a 15-minute timer, and narrate your approach before and while you code it in Go:</p>
+  <ul>
+    <li><strong>Easy:</strong> <a href="https://leetcode.com/problems/valid-palindrome/">Valid Palindrome</a> — opposite-ends variant.</li>
+    <li><strong>Medium:</strong> <a href="https://leetcode.com/problems/container-with-most-water/">Container With Most Water</a> — opposite-ends, with a greedy-move justification you should be able to defend out loud.</li>
+  </ul>
+  <p>If you finish early, try <a href="https://leetcode.com/problems/3sum/">3Sum</a> — same-direction fixed pointer plus an opposite-ends inner loop, the natural next step up.</p>
+</div>
+
+<h2>Primary source</h2>
+<div class="box source">
+  <div class="box-title">Reference</div>
+  <a href="https://leetcode.com/problem-list/mquvlgzg/">NeetCode — Two Pointers problem list</a> —
+  curated problem set, the highest-trust source found for this pattern. Full template and recognition
+  cues are also captured in <a href="../reference/go-patterns.html#two-pointers">the cheat sheet</a>
+  for quick lookup later.
+</div>
+
+<div class="box ask">
+  <div class="box-title">Ask your teacher</div>
+  Stuck on one of the practice problems, or want your out-loud explanation critiqued? Ask directly —
+  paste your Go solution and I'll review it the way an interviewer would.
+</div>
+
+<h2>Next</h2>
+<p>
+  Lesson 3 extends this into <strong>sliding window</strong> — same-direction two pointers, but tracking
+  a window's contents rather than just two positions. Natural next step once opposite-ends and
+  slow/fast both feel automatic.
+</p>
+
+<footer class="lesson-footer">
+  Lesson 2 of the <a href="../MISSION.md">Big Tech SWE Interview Prep</a> workspace ·
+  Sources: <a href="../RESOURCES.md">RESOURCES.md</a>
+</footer>

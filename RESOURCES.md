@@ -36,6 +36,8 @@
 - [LeetCode](https://leetcode.com/)
   Accepts Go natively as a submission language; free tier is enough for practice. Use for: timed practice, company-tagged questions (Premium).
 - No standalone high-trust book teaching algorithms specifically in Go was found — see Gaps.
+- [NeetCode — Two Pointers problem list](https://leetcode.com/problem-list/mquvlgzg/)
+  Curated by NeetCode, hosted on LeetCode. Use for: primary source and drill set for the two-pointers pattern (lesson 2).
 
 ### System design
 - [ByteByteGo (Alex Xu)](https://bytebytego.com/)
