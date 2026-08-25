@@ -5,5 +5,25 @@ package twopointers
 // MaxArea returns the maximum area of water a container formed by two of
 // the given heights can hold.
 func MaxArea(height []int) int {
-	panic("not implemented")
+	left, right := 0, len(height)-1
+	maxArea := 0
+
+	for left < right {
+		h := height[left]
+		if height[right] < h {
+			h = height[right]
+		}
+		area := h * (right - left)
+		if area > maxArea {
+			maxArea = area
+		}
+
+		if height[left] < height[right] {
+			left++
+		} else {
+			right--
+		}
+	}
+
+	return maxArea
 }
